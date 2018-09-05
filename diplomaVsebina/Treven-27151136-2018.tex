@@ -82,7 +82,7 @@
 
 Metode podpornih vektorjev sodijo v področje nadzorovanega strojnega učenja. Z njimi si pomagamo, ko želimo s pomočjo že znanih podatkov napovedati razrede novim podatkom.  Kot primer si lahko predstavljamo, da smo opravili meritve listov različnih rož, biolog pa nam je povedal, katerim vrstam te rože pripadajo. S pomočjo metod podpornih vektorjev bi na podlagi že znanih meritev in meritve lista nove rože lahko napovedali, v kateri razred spada posamezna roža, ne da bi pri tem vprašali biologa.
 
-V diplomskem delu problem najprej prevedemo v matematični jezik. V poglavjih \ref{dual}, \ref{updual}, in \ref{PoglavjeMetodeJeder} predstavimo teoretično ozadje problema. V poglavju \ref{poglavjePrimerUporabe} pa si ogledamo primer uporabe metod podpornih vektorjev. Uvodno poglavje \ref{poglavjeOpisProblema} sledi literaturi \cite[str. 337--356]{DM}, \cite[str. 417--426]{ESL} in \cite[str. 214--235]{AITSL}. Pri poglavjih \ref{dual}, \ref{updual} smo sledili \cite{ITNO}. V poglavju \ref{poglavjePrimerUporabe} prikažemo rezultate, ki smo jih dobili z lastno implementacijo. 
+V diplomskem delu problem najprej prevedemo v matematični jezik. V poglavjih \ref{dual}, \ref{updual}, in \ref{PoglavjeMetodeJeder} predstavimo teoretično ozadje problema. V poglavju \ref{poglavjePrimerUporabe} pa si ogledamo primer uporabe metod podpornih vektorjev. Uvodno poglavje \ref{poglavjeOpisProblema} sledi literaturi \cite[str. 337--356]{DM}, \cite[str. 417--426]{ESL} in \cite[str. 214--235]{AITSL}. Pri poglavjih \ref{dual}, \ref{updual} smo sledili \cite{ITNO}. V poglavju \ref{poglavjePrimerUporabe} prikažemo rezultate, ki smo jih dobili z lastno implementacijo. Metode podpornih vektorjev so bile implementirane v programskem jeziku \emph{Python}, programska koda se nahaja v dodatku. 
 
 
 \section{Opis problema}
@@ -146,7 +146,7 @@ Takih ločnih ravnin (in posledično klasifikacij) je lahko več. Vprašanje je,
 	\item 
 	Ta razdalja naj bo maksimalna med vsemi ravninami, ki ločijo podatke.
 \end{enumerate}
-\begin{figure}[H]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{slike/LinearnoLocljiviIskanjeHiperravnine.jpg}
 	\caption{Iskanje hiperravnine.}
@@ -174,7 +174,7 @@ Iz linearnosti skalarnega produkta sledi:
 $$ w^Tx_-  + rw^Tw+ b = 1. $$
 Prvi in zadnji člen se po definiciji $x_-$ seštejeta v $-1$, od koder sledi 
 $$ r = \frac{2}{||w||}.$$
-\begin{figure}[H]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.7\textwidth]{slike/LinearnoLocljiviOptimizacija.jpg}
 	\caption{Ideja minimizacijskega problema.}
@@ -419,7 +419,7 @@ Sedaj si oglejmo nekaj lem in trditev, ki nam bodo pomagale dokazati izrek o sep
 	\begin{align*}
 	2p^T (a_0 - a )- t ||a_0-a|| \le 0.
 	\end{align*}
-	Sedaj pošljemo $t$ proti 0 in dobimo 
+	Sedaj pošljemo $t$ s pozitivne strani proti 0 in dobimo 
 	\begin{align*}
 	2p^T(a_0-a) \le  0,
 	\end{align*}
@@ -667,7 +667,7 @@ Konveksno območje $X$, na katerem iščemo minimum, pa bo
 \begin{align*}
 X = \R^n \times \R \times (\R_+ \cup \{0\})^m,
 \end{align*}
-kjer so $w\in \R^n$, $b \in \R$ in $e \in  \R^m_+ \cup \{0\}.$ S tem smo s samo izbiro območja zadostili pogoju $e \ge 0$. Da bomo lahko uporabili izrek \ref{izrekdual}, moramo še pokazati, da so funkcije $f, g_i$ konveksne na $X$, da obstaja točka $(\widehat{w}, \widehat{b}, \widehat{e}) \in X$, za katero velja $g_i(\widehat{w}, \widehat{b}, \widehat{e}) < 0, i = 1, \ldots, m$, ter da ima naš problem končno optimalno vrednost.  Ker je optimizacijska funkcija $f$ vsota kvadratov $\frac{1}{2}w_i^2$ ter vsota linearnih členov $Ce_i$, ki so vse konveksne funkcije, je tudi $f$ konveksna.  Ker so vse omejitvene funkcije $g_i$ afine, so  posledično tudi konveksne. Sedaj bomo skonstruirali točko $(\widehat{w}, \widehat{b}, \widehat{e}) \in X$, za katero velja $g_i(\widehat{w}, \widehat{b}, \widehat{e}) < 0$ za vse $i = 1, \ldots, m$. Izberimo si poljubna $\widehat{w}$ in $\widehat{b}$. Za $\widehat{e_i}$ si izberemo: 
+kjer so $w\in \R^n$, $b \in \R$ in $e \in  (\R_+ \cup \{0\})^m.$ S tem smo s samo izbiro območja zadostili pogoju $e \ge 0$. Da bomo lahko uporabili izrek \ref{izrekdual}, moramo še pokazati, da so funkcije $f, g_i$ konveksne na $X$, da obstaja točka $(\widehat{w}, \widehat{b}, \widehat{e}) \in X$, za katero velja $g_i(\widehat{w}, \widehat{b}, \widehat{e}) < 0, i = 1, \ldots, m$, ter da ima naš problem končno optimalno vrednost.  Ker je optimizacijska funkcija $f$ vsota kvadratov $\frac{1}{2}w_i^2$ ter vsota linearnih členov $Ce_i$, ki so vse konveksne funkcije, je tudi $f$ konveksna.  Ker so vse omejitvene funkcije $g_i$ afine, so  posledično tudi konveksne. Sedaj bomo skonstruirali točko $(\widehat{w}, \widehat{b}, \widehat{e}) \in X$, za katero velja $g_i(\widehat{w}, \widehat{b}, \widehat{e}) < 0$ za vse $i = 1, \ldots, m$. Izberimo si poljubna $\widehat{w}$ in $\widehat{b}$. Za $\widehat{e_i}$ si izberemo: 
 \begin{align*}
 \widehat{e_i} = 
 \begin{cases}
@@ -759,7 +759,7 @@ so \emph{Karush-Kuhn-Tuckerjevi pogoji}\footnote{Več o Karush-Kuhn-Tuckerjevih 
 	&g_i(x) \le 0,~ i = 1,\ldots,m \\
 	&\lambda_i \ge 0,~ i = 1,\ldots,m.
 \end{align*}
-Za konveksne probleme, kot je problem \eqref{NPP}, velja, da je v točki $x^*$ dosežen minimum natako tedaj, ko točka $x^*$ zadošča \emph{Karush-Kuhn-Tuckerjevim pogojem.}
+Za konveksne probleme, kot je problem \eqref{NPP}, velja, da je v točki $x^*$ dosežen minimum natanko tedaj, ko točka $x^*$ zadošča \emph{Karush-Kuhn-Tuckerjevim pogojem.}
 
 Če upoštevamo \emph{Karush-Kuhn-Tuckerjeve pogoje}, ki morajo veljati v rešitvi optimizacijskega problema \eqref{NPP}, dobimo:  %Opis KKT pogojev je v literaturi, v to se ne spuščamo, saj pademo preveč izven konteksta
 \begin{align}
@@ -773,7 +773,7 @@ f(x) = \sign\bigg(\sum_{i \in S}\alpha_iy_ix_i^Tx +b\bigg).
 Tipično je podpornih vektorjev zelo malo v primerjavi s številom začetnih podatkov, zato je zgornja vsota po podpornih vektorjih precej krajša kot prvotna vsota, ki se pojavi v izračunu napovedne funkcije. S pomočjo enačb \eqref{sndmin} in \eqref{KKT} dobimo tudi parameter $b$, ki ga potrebujemo za napovedno funkcijo. 
 \begin{align*}
 &\alpha_i(y_i(w^Tx_i + b)-(1-e_i)) = 0\\
-&\min_{e}\bigg(e^T(C\mathds{1}-\alpha)\bigg) = 
+&\inf_{e \ge 0}\bigg(e^T(C\mathds{1}-\alpha)\bigg) = 
 \begin{cases}
 0; & \alpha \le C\mathds{1}\\
 -\infty; & \text{sicer}
@@ -960,7 +960,7 @@ res jedro, torej da je skalarni produkt v nekem prostoru \footnote{Dokaz je povz
 	\begin{align*}
 	\Phi(x)(t) = \Big(\frac{4\gamma}{\pi}\Big)^\frac{d}{4}e^{-2\gamma||x-t||^2}, 
 	\end{align*} 
-	kjer je $L$ podprostor vseh zveznih funkciji $ L_2(\R^d)$ s skalarnim produktom $\langle f, g    \rangle = \int_{\R^d}f(t)g(t)dt.$ Velja $ K(x, y) = \langle \Phi(x), \Phi(y) \rangle $. Torej je 	$K(x, y)$ jedro.
+	kjer je $L$ podprostor vseh zveznih funkcij prostora $ L_2(\R^d)$ s skalarnim produktom $\langle f, g    \rangle = \int_{\R^d}f(t)g(t)dt.$ Velja $ K(x, y) = \langle \Phi(x), \Phi(y) \rangle $. Torej je 	$K(x, y)$ jedro.
 \end{trditev}
 
 \begin{dokaz}
@@ -1008,7 +1008,7 @@ Glavna prednost zgornjega modela je, da ne glede na obliko jedra, vedno dobimo p
 
 \section{Primer uporabe}
 \label{poglavjePrimerUporabe}
-V tem poglavju si bomo ogledali, kako metode podpornih vektorjev uporabimo na dejanskih podatkih. Naučeno znanje bomo uporabili na manjšem, a hkrati zelo ilustrativnem, nato pa še na večjem primeru. 
+V tem poglavju si bomo ogledali, kako metode podpornih vektorjev uporabimo na dejanskih podatkih. Naučeno znanje bomo uporabili na manjšem, a hkrati zelo ilustrativnem, nato pa še na večjem primeru. Vse slike, tabele in grafi so nastali s pomočjo lastne implementacije, ki jo lahko najdemo v dodatku.
 
 \subsection{Natančnost modela}
 Kot smo videli v poglavju \ref{PoglavjeMetodeJeder}, lahko na dani podatkovni množici  uporabimo različna jedra in  s tem dobimo različne ločitvene meje med podatki. Hkrati tudi vidimo, da imamo tudi po izbiri tipa jedra še nekaj prostih parametrov. Pri vsaki izbiri modela moramo podati parameter $C$, s katerim reguliramo, kako močno so kaznovani podatki, ki ležijo na napačni strani ločitvene meje. Če izberemo polinomsko jedro, imamo dodaten parameter $d \in \N$, s katerim reguliramo stopnjo polinomske ločitvene meje. Pri radialnem jedru imamo prost parameter $\gamma \in \R_+$, s katerim reguliramo moč lokalnega vpliva danih podatkov. Večji kot je $\gamma$, bolj bodo novi podatki odvisni samo od podatkov, ki so blizu njih. S prevelikim $\gamma$ se soočimo s problemom \emph{preprileganja}, kar pomeni, da se naš model preveč prilega testnim podatkom, na novih podatkih pa se posledično odreže slabše. Ker imamo veliko izbiro različnih modelov, želimo ugotoviti, kateri model je boljši kot drugi. Natančnost modela bomo testirali s tako imenovanim \emph{prečnim preverjanjem}. Oglejmo si algoritem, s katerim preverimo natančnosti modela s prečnim preverjanjem.  
@@ -1287,318 +1287,19 @@ Zanimivo je videti tudi čas učenja posameznih polinomskih modelov. Vidimo, da 
 
 
 \section*{Dodatek A: Programska koda}
-V dodatku se nahaja programska koda, ki je bila napisana za namene diplomske naloge ter s pomočjo katere so nastali zgornji primeri uporabe. Koda je prosto dostopna tudi na spletnem naslovu \url{github.com/lenarttreven/Diploma/tree/master/diplomaKoda}.
+\label{koda}
+V dodatku se nahaja programska koda, ki je bila napisana za namene diplomske naloge ter s pomočjo katere so nastali zgornji primeri uporabe. Koda je napisana v programskem jeziku \emph{Python}, za konveksno optimizacijo se uporablja knjižnica \emph{cvxpy}, za obdelavo podatkov pa knjižnici \emph{pandas} in \emph{numpy}. Koda je prosto dostopna tudi na spletnem naslovu \url{github.com/lenarttreven/Diploma/tree/master/diplomaKoda}.
 
 
 \begin{scriptsize}
 
-\begin{minted}[
+\inputminted[
  breaklines,
  mathescape,
  numbersep=5pt,
  frame=single,
- ]{python}
+ ]{python}{svm.py}
 
-import matplotlib.pyplot as plt
-from matplotlib import style
-import numpy as np
-import pandas as pd
-from cvxpy import *
-from sklearn.utils import shuffle
-
-style.use('ggplot')
-
-class SVM():
-def __init__(self, data, kernel="linear", degree=1, g=100, k1=1, k2=1, C=50, method='ovo'):
-    self.K = self.make_k(kernel, degree, g, k1, k2)
-    self.kernel = kernel
-    self.degree = degree
-    self.g = g
-    self.k1 = k1
-    self.k2 = k2
-    self.C = C
-    self.method = method
-    self.myfit, self.mypredict = self.make_environment()
-    self.prepare_data(data)
-    self.data = data.copy()
-    self.normalized_data = normalize_df(data)
-    self.maximum = np.array(self.data[self.data.columns.difference(['razred'])].max())
-    self.minimum = np.array(self.data[self.data.columns.difference(['razred'])].min())
- 
-def make_k(self, kernel, degree=1, g=100, k1=1, k2=1): 
-    if kernel == 'linear':
-        def jedro(x1, x2):
-            return np.dot(x1, x2)
-        return jedro
-    elif kernel == 'polynomial':
-        def jedro(x1, x2):
-            return (1 + np.dot(x1, x2)) ** degree
-        return jedro
-    elif kernel == 'radial':
-        def jedro(x1, x2):
-            return np.exp(-g * np.linalg.norm(x1 - x2, axis=-1))
-        return jedro
-    elif kernel == 'neural':
-        def jedro(x1, x2):
-            return np.tanh(k1 * np.dot(x1, x2)+ k2) 
-        return jedro
-
-def make_environment(self): 
-    if self.method == 'ovo':
-        def fit_one_versus_one(dataset=None):
-            if dataset is None:
-                dataset = self.normalized_data
-            napovedi = dict()
-            for i in range(self.stevilo_razredov):
-                for j in range(i):
-                    data = dataset.loc[dataset['razred'].isin([i, j])]
-                    X = np.array(data.drop(['razred'], 1)).astype(np.float)
-                    y = np.array(data['razred']).astype(np.float)
-                    y[y == j] = -1
-                    y[y == i] = 1
-                    a, b, indeksi = self._fit(X, y)
-                    napovedi[(i,j)] = (a, b, indeksi)
-            return napovedi
-        
-        def predict_one_versus_one(X, napovedi, dataset=None):
-            if dataset is None:
-                dataset = self.normalized_data
-            glasovi = np.zeros(self.stevilo_razredov)
-            for i in range(self.stevilo_razredov):
-                for j in range(i):
-                    data = dataset.loc[dataset['razred'].isin([i, j])]
-                    X_data = np.array(data.drop(['razred'], 1)).astype(np.float)
-                    y_data = np.array(data['razred']).astype(np.float)
-                    y_data[y_data == j] = -1
-                    y_data[y_data == i] = 1
-                    glas = self._predict(X, X_data, y_data, *napovedi[(i,j)])
-                    if glas == 1:
-                        glasovi[i] += 1
-                    else:
-                        glasovi[j] += 1
-            return np.argmax(glasovi)
-        return fit_one_versus_one, predict_one_versus_one
-    
-    elif self.method == 'ova':
-        def fit_one_versus_all(dataset=None):
-            if dataset is None:
-                dataset = self.normalized_data
-            napovedi = dict()
-            for i in range(self.stevilo_razredov):
-                X_train = np.array(dataset.drop(['razred'], 1)).astype(np.float)
-                y_train = np.array(dataset['razred']).astype(np.float)
-                y_train[y_train != i] = -1
-                y_train[y_train == i] = 1
-                napovedi[i] = self._fit(X_train, y_train)
-            return napovedi
-        def predict_one_versus_all(X, napovedi, dataset=None):
-            if dataset is None:
-                dataset = self.normalized_data
-            glasovi = np.zeros(self.stevilo_razredov)
-            for i in range(self.stevilo_razredov):
-                X_data = np.array(dataset.drop(['razred'], 1)).astype(np.float)
-                y_data = np.array(dataset['razred']).astype(np.float)
-                y_data[y_data != i] = -1
-                y_data[y_data == i] = 1
-                glasovi[i] = self.classifier(X, X_data, y_data, *napovedi[i])
-            return np.argmax(glasovi)
-        return fit_one_versus_all, predict_one_versus_all
-    else: 
-        raise ValueError('No such method is known to this program. Try ovo (one versus one) or ova (one versus all)')
-        
-def prepare_data(self, df):
-    self.stevilo_razredov = df.razred.nunique()
-    self.to_indeks = dict()
-    self.to_name = dict()
-    for indeks, name in enumerate(df.razred.unique()):
-        self.to_indeks[name] = indeks
-        self.to_name[indeks] = name
-    df.replace(self.to_indeks, inplace=True)
-                  
-def fit(self):
-    self.napovedi = self.myfit()
-    X = np.array(self.normalized_data.drop(['razred'], 1)).astype(np.float)
-    y = np.array(self.normalized_data['razred']).astype(np.float)
-    self.accuracy_on_set = self.test(X, y, self.napovedi, self.normalized_data)
-
-def cross_validate(self, k=10):
-    self.split_data = split_data(self.data, k)
-    results = []
-    tests = []
-    for i in range(k):
-        test = self.split_data[i]
-        train = pd.concat([df for num, df in enumerate(self.split_data) if not num == i])
-        maximum = np.array(train[train.columns.difference(['razred'])].max())
-        minimum = np.array(train[train.columns.difference(['razred'])].min())
-        train = normalize_df(train)
-        test_X = np.array(test.drop(['razred'], 1)).astype(np.float)
-        test_y = np.array(test['razred']).astype(np.float)
-        test_X = (test_X - minimum) / (maximum - minimum)
-        napovedi = self.myfit(dataset=train)
-        accuracy = self.test(test_X, test_y, napovedi, train)
-        results.append((napovedi, accuracy))
-        tests.append(accuracy)
-    self.results = results
-    self.accuracy_test = np.array(tests)
-    self.accuracy = np.mean(self.accuracy_test)
-    self.izracunaj_standarni_odklon_natancnosti()
-       
-def test(self, X, y, napovedi, dataset):
-    all_instances = 0
-    correct_instances = 0
-    for index, instance in enumerate(X):
-        all_instances += 1
-        if self.mypredict(instance, napovedi, dataset=dataset) == y[index]:
-            correct_instances += 1
-    accuracy = correct_instances/all_instances
-    return accuracy
-
-def izracunaj_standarni_odklon_natancnosti(self):
-    vzorci = self.accuracy_test
-    povprecje = self.accuracy
-    n = len(vzorci)
-    varianca = 0
-    for i in vzorci:
-        varianca += (i - povprecje)**2
-    varianca /= n
-    self.standarni_odklon_natancnosti = np.sqrt(varianca)
-      
-def predict(self, X, df, ydf, a, b):
-    X = (X - self.minimum) / (self.maximum - self.minimum)
-    return self._predict(X, df, ydf, a, b)
-
-def _predict(self, X, df, ydf, a, b, indeksi):
-    return np.sign(self.classifier(X, df, ydf, a, b, indeksi))
-
-def posplosen_skalarni_produkt(self, x_j, X, y, alpha, indeksi):
-    rezultat = 0
-    for i in indeksi: 
-        rezultat += alpha[i] * y[i] * self.K(x_j, X[i])
-    return rezultat
-    
-def find_support_vectors(self, alpha,X, y, odpad= 10 ** (-5), odstopanje=0.99):
-    a = np.amax(alpha)
-    #poiščemo indkse, za katere so X[i] podporni vektorji
-    indeksi = []
-    for i in range(len(alpha)):
-        if alpha[i]/a >= odpad:
-            indeksi.append(i)
-    #sedaj določimo b, ki ga potrebujemo za napoved.
-    #B je vektor, ki ga bomo polnili z različnimi b-ji nato pa izračunalil njigevo povprečje
-    B = []
-    for i in indeksi:
-        if alpha[i] < self.C * odstopanje:
-            B.append(y[i] - self.posplosen_skalarni_produkt(X[i], X, y, alpha, indeksi))
-    
-    b = np.mean(B)
-    return (b, indeksi)
-     
-def classifier(self, X, Xdf, ydf, a, b, indeksi):
-    result = self.posplosen_skalarni_produkt(X, Xdf, ydf, a, indeksi)
-    return result + b
-
-def visualize(self, h=0.5):
-    if len(self.data.columns) != 3:
-        return 'Number of attribute dimensions is not 2'
-    self.fig = plt.figure()
-    self.ax = self.fig.add_subplot(1,1,1)
-    df = self.normalized_data
-    
-    #narišemo vse različne razrede kot scatter graf:
-    seznam_razredov = df.razred.unique()
-    x_stolpec, y_stolpec = df.columns.difference(['razred'])
-
-    n = len(seznam_razredov)       
-    color=iter(plt.cm.rainbow(np.linspace(0,1,n)))
-    
-    
-    for razred in seznam_razredov:
-        data = df.loc[df['razred'] == razred]
-        c=next(color)
-        self.ax.scatter(data[x_stolpec], data[y_stolpec], c=c)
-    
-    #risanje crt
-    h = .01  # velikost koraka v mrezi
-    x_min, x_max = -0.2, 1.2
-    y_min, y_max = -0.2, 1.2
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-    
-    #narišemo vse meje med posameznimi razredi:
-    if self.method == 'ovo':
-        for i in range(self.stevilo_razredov):
-            for j in range(i):
-                data = self.normalized_data.loc[self.normalized_data['razred'].isin([i, j])]
-                data = self.normalized_data.loc[self.normalized_data['razred'].isin([i, j])]
-                Xdf = np.array(data.drop(['razred'], 1)).astype(np.float)
-                ydf = np.array(data['razred']).astype(np.float)
-                ydf[ydf != i] = -1
-                ydf[ydf == i] = 1
-
-                # Narisemo mejo. 
-                Z = self.classifier(np.c_[xx.ravel(), yy.ravel()], Xdf, ydf, *self.napovedi[(i,j)])
-                Z = Z.reshape(xx.shape)
-                plt.contour(xx, yy, Z, levels=[-1 , 0, 1], colors=('grey', 'black', 'grey'), linestyles=('dashed', 'solid', 'dashed'))
-    
-    if self.method == 'ova':
-        for i in range(self.stevilo_razredov):
-            Xdf = np.array(df.drop(['razred'], 1)).astype(np.float)
-            ydf = np.array(df['razred']).astype(np.float)
-            ydf[ydf != i] = -1
-            ydf[ydf == i] = 1
-            
-            # Narisemo mejo.
-            Z = self.classifier(np.c_[xx.ravel(), yy.ravel()], Xdf, ydf, *self.napovedi[i])
-            Z = Z.reshape(xx.shape)
-            plt.contour(xx, yy, Z, levels=[-1 , 0, 1], colors=('grey', 'black', 'grey'), linestyles=('dashed', 'solid', 'dashed'))
-    
-    X = np.c_[xx.ravel(), yy.ravel()]
-    Z = np.zeros(len(X))
-    for index, i in enumerate(X):
-        Z[index] = self.mypredict(i, self.napovedi)
-    Z = Z.reshape(xx.shape)
-    plt.contourf(xx, yy, Z, alpha=0.1)
-    plt.show()
-    
-def _fit(self, X, y):
-    n = len(X)
-    m = len(X[0])
-
-    a = Variable(n)
-
-    # Postavimo optimizacijski model
-    A = np.zeros(shape=(n,n))
-    for i in range(n):
-        for j in range(n):
-            A[i][j] = self.K(X[i], X[j])
-    obj = Maximize(sum_entries(a) - 1/2 * quad_form(a, np.dot(np.dot(np.diag(y), A), np.diag(y))))
-    constraints = [a >= 0,  a <= self.C, a.T * y == 0]
-    
-    prob = Problem(obj, constraints)
-    prob.solve()
-
-    a = np.squeeze(np.asarray(a.value))
-    b, indeksi = self.find_support_vectors(a, X, y, odpad=10**(-5), odstopanje=0.99)
-    return (a, b, indeksi)
-    
-def normalize_df(df):
-    df[df.columns.difference(['razred'])] = df[df.columns.difference(['razred'])].apply(lambda x: (x - x.min()) / (x.max() - x.min())) 
-    return df    
-    
-def normalize_arr(X):
-    X_normed = (X - X.min(0)) / X.ptp(0)
-    return X_normed
-    
-def split_data(data, k=10):
-    data = shuffle(data)
-    data.reset_index(drop=True,inplace=True)
-    split_data = partition(data, k)
-    return split_data
-        
-def partition(lst, n):
-    division = len(lst) / n
-    return [lst[round(division * i):round(division * (i + 1))] for i in range(n)]
-
-\end{minted}
 \end{scriptsize}
 
 
@@ -1636,4 +1337,8 @@ J.~Thickstun, \emph{Mercer's theorem}, [ogled 13.~6.~2018], dostopno na \url{hom
 \end{thebibliography}
 
 \end{document}
+
+
+
+
 
